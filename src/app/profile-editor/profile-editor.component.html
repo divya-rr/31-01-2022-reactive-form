@@ -1,0 +1,51 @@
+<div class="container">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+    <label for="firstName"><strong>Name:</strong></label>
+    <input id="firstName" type="text" formControlName="firstName" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="lastName"><strong>Last Name:</strong></label>
+    <input id="lastName" type="text" formControlName="lastName" class="form-control">
+    </div>
+    
+<div formGroupName="address">
+    <h2>Address</h2>
+    <div class="form-group">
+    <label for="street"><strong>Street:</strong></label>
+    <input id="street" type="text" formControlName="street"class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="lastName"><strong>City:</strong></label>
+    <input id="city" type="text" formControlName="city" class="form-control">
+    </div>
+<div class="form-group">
+    <label for="state"><strong>State:</strong></label>
+    <input id="state" type="text" formControlName="state" class="form-control">
+    </div>
+<div class="form-group">
+    <label for="zip"><strong>Zip Code:</strong></label>
+    <input id="zip" type="text" formControlName="zip" class="form-control">
+    </div>
+</div>
+<div class="form-group">
+<div formArrayName="aliases">
+    <h2>Aliases</h2>
+    <button class="btn-primary" (click)="addAliases()">+ Add another aliase</button>
+    <div *ngFor="let alias of aliases.controls; let index as i " >
+        <label for="instance-of-alias"><strong>Aliase:</strong></label>
+        <input id="instance-of-alias" type="text" formControlName="i" class="form-control">
+    </div>
+</div>
+</div>
+<br>
+<p>Complete the form to enable the button</p>
+<button class="btn-primary" [disabled]="profileForm.invalid" type="submit">Submit</button>
+<p>Form status:{{profileForm.status}}</p>
+<button class="btn-primary" (click)=updateProfile()>Update Profile</button>
+
+
+</form>
+</div>
+{{profileForm.value|json}}
+
